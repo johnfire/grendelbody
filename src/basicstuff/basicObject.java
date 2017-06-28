@@ -39,7 +39,7 @@ public class basicObject {
 
     public basicObject() {
        startTime = this.getCurrentTime();  
-    }0
+    }
     
     public long calcluateTimeDiff(long startTime, long endTime) {
         return endTime-startTime;   
