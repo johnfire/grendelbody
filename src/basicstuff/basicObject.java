@@ -24,28 +24,36 @@ package basicstuff;
  * @author christopherrehm
  */
 public class basicObject {
+    
     // this is the basic object that all objects are derived from it has the following properties
     // creates and implements analysis
     // creates and implements basic message sending anywhere in the system
     // maintains a list of who is accessing this object lock problems 
     // write data to txt file 
     // read data from txt file
+    
     private long timerTotal = 0 ;
     private long startTime = 0 ;
-    private long timerStop = 0 ; 
+    private long timerStop = 0 ;
+    
 
     public basicObject() {
-       startTime = this.getCurrentTime();
-       
-    }
+       startTime = this.getCurrentTime();  
+    }0
+    
     public long calcluateTimeDiff(long startTime, long endTime) {
-        return endTime-startTime;
-        
+        return endTime-startTime;   
+    }
+    
+    public long updateTotalTime(long startTime, long endTime){
+        return this.timerTotal += endTime - startTime;
     }
     
     public long getCurrentTime() {
         return System.currentTimeMillis();
     }
+    
+    
             
     
 }
