@@ -5,10 +5,12 @@
  */
 package grendelbody.internetinout;
 
+import basicstuff.basicObject;
+
 /**
  *
  * @author christopherrehm
  */
-public class internetInterface {
+public class internetInterface extends basicObject {
     
 }
