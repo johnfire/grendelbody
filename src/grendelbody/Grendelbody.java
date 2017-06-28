@@ -5,11 +5,13 @@
  */
 package grendelbody;
 
+import basicstuff.basicObject;
+
 /**
  *
  * @author christopherrehm
  */
-public class Grendelbody {
+public class Grendelbody extends basicObject {
 
     /**
      * @param args the command line arguments
