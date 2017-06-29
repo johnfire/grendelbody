@@ -10,5 +10,9 @@ package grendelbody.soundin;
  * @author christopherrehm
  */
 public class soundin extends basicstuff.basicObject {
+    @Override
+    public void run() {
+        System.out.println("we are in the soundin routine");
+    }
     
 }
