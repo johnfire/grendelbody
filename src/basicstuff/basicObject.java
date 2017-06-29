@@ -19,8 +19,6 @@ package basicstuff;
  * MA 02110-1301  USA
  */
 
-import basicstuff.message;
-
 /**
  *
  * @author christopherrehm
@@ -39,8 +37,8 @@ public class basicObject {
     private long timerStop = 0 ;
     
 
-    public basicObject() {
-       startTime = this.getCurrentTime();  
+    public long now() {
+       return this.getCurrentTime();  
     }
     
     public long calcluateTimeDiff(long startTime, long endTime) {
@@ -69,8 +67,5 @@ public class basicObject {
     public int writeTxtFile(String someTxt){
         // some proceedure here
         return 0;
-    }
-    
-            
-    
+    }  
 }
