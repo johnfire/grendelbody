@@ -34,6 +34,10 @@ public class Grendelbody extends basicObject {
             Thread T2 = new Thread ((Runnable) myOutput);
             Thread T3 = new Thread ((Runnable) mySoundIn);
             Thread T4 = new Thread ((Runnable) myVisionIn);
+            
+//            try (AffinityLock newthread = AffinityLock.acquireLock()) {
+//    // do some work while locked to a CPU.
+//            }
 
             System.out.println("--> THREAD 0 starting threads 1 to 4 ");
             T1.start();
