@@ -9,6 +9,6 @@ package grendelbody.soundin;
  *
  * @author christopherrehm
  */
-public class soundin {
+public class soundin extends basicstuff.basicObject {
     
 }
