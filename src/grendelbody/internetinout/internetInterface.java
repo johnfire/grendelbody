@@ -13,4 +13,8 @@ import basicstuff.basicObject;
  */
 public class internetInterface extends basicObject {
     
+    public static void main(String[] args) {
+        System.out.println("we are in the internet interface routine");
+    }
+    
 }

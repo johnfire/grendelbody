@@ -43,6 +43,7 @@ public class Grendelbody extends basicObject {
 
         }
         catch (Exception e){
+            println("something isnt working in grendelbody");
             
         }   
     }
