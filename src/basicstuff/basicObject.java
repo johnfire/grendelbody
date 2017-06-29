@@ -23,7 +23,7 @@ package basicstuff;
  *
  * @author christopherrehm
  */
-public class basicObject {
+public abstract class basicObject extends Thread {
     
     // this is the basic object that all objects are derived from it has the following properties
     // creates and implements analysis
