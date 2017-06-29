@@ -9,6 +9,6 @@ package grendelbody.output;
  *
  * @author christopherrehm
  */
-public class output {
+public class output extends basicstuff.basicObject{
     
 }
