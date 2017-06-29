@@ -19,6 +19,8 @@ package basicstuff;
  * MA 02110-1301  USA
  */
 
+import basicstuff.message;
+
 /**
  *
  * @author christopherrehm
@@ -44,7 +46,7 @@ public class basicObject {
     public long calcluateTimeDiff(long startTime, long endTime) {
         return endTime-startTime;   
     }
-    
+        
     public long updateTotalTime(long startTime, long endTime){
         return this.timerTotal += endTime - startTime;
     }
@@ -53,6 +55,21 @@ public class basicObject {
         return System.currentTimeMillis();
     }
     
+    public long newMessage() {   
+        message newMessage = new message();
+        return newMessage.showID();
+    }  
+    
+    public String readTxtFile(String someTxtFile){
+       String mystring ="";   
+       // some proceedure here
+       return mystring; 
+    }
+    
+    public int writeTxtFile(String someTxt){
+        // some proceedure here
+        return 0;
+    }
     
             
     
