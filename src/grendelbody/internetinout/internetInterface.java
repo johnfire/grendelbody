@@ -26,8 +26,6 @@ public class internetInterface extends basicObject {
             } catch (InterruptedException ex) {
                 Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
         }
-    }
-    
+    }   
 }

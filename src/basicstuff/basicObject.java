@@ -35,7 +35,6 @@ public abstract class basicObject extends Thread {
     private long timerTotal = 0 ;
     private long startTime = 0 ;
     private long timerStop = 0 ;
-    
 
     public long now() {
        return this.getCurrentTime();  

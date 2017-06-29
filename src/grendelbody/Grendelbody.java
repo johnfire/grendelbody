@@ -29,7 +29,6 @@ public class Grendelbody extends basicObject {
             soundin mySoundIn = new soundin();
             visionin myVisionIn= new visionin();
             
-            
             Thread T1 = new Thread ((Runnable) myInternetInterface);
             Thread T2 = new Thread ((Runnable) myOutput);
             Thread T3 = new Thread ((Runnable) mySoundIn);
@@ -44,14 +43,9 @@ public class Grendelbody extends basicObject {
             T2.start();
             T3.start();
             T4.start();
-
         }
         catch (Exception e){
-            System.out.println("something isnt working in grendelbody");
-            
+            System.out.println("something isnt working in grendelbody");    
         }   
-    }
-   
-         
-    
+    }   
 }

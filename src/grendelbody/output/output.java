@@ -14,6 +14,5 @@ public class output extends basicstuff.basicObject{
     @Override
     public void run() {
         System.out.println("we are in the output routine");
-    }
-    
+    }    
 }

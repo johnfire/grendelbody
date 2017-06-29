@@ -14,5 +14,4 @@ public class visionin extends basicstuff.basicObject{
     public void run() {
         System.out.println("we are in the visionin routine");
     }
-    
 }
