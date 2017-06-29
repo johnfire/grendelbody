@@ -9,6 +9,6 @@ package grendelbody.visionin;
  *
  * @author christopherrehm
  */
-public class visionin {
+public class visionin extends basicstuff.basicObject{
     
 }
