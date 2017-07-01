@@ -6,6 +6,7 @@
 package grendelbody.internetinout;
 
 import basicstuff.basicObject;
+import miscstuff.GreetingClient;
 import basicstuff.message;
 import java.io.File;
 import java.io.IOException;
@@ -21,12 +22,19 @@ public class internetInterface extends basicObject implements Runnable {
     int pid;
     @Override
     public void run() {
+        message TestMessage =new message();
         try {
              pid = Integer.parseInt(new File("/proc/self").getCanonicalFile().getName());
         } catch (IOException ex) {
             Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
+        GreetingClient myClient = new GreetingClient();
         
+        myClient.run("192.168.0.101",5000);
+        System.out.println("made contact from internetinterface to router");
+        myClient.sendMessage(TestMessage);
+        System.out.println("just past send message statement");
+                
         System.out.println("we are in the internet interface routine first time"+ "my process ID is "+ pid);
         while (runVar== 1){
             try {
