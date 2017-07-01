@@ -1,5 +1,18 @@
 package basicstuff;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sun.misc.IOUtils;
+
 /*
  * Copyright (C) 2017 christopherrehm.
  *
@@ -34,10 +47,18 @@ public abstract class basicObject extends Thread {
     
     private long timerTotal = 0 ;
     private long startTime = 0 ;
-    private long timerStop = 0 ;
+   
 
     public long now() {
        return this.getCurrentTime();  
+    }
+    
+    public void setStrartTime(long inputTime){
+        startTime = inputTime;  
+    }
+    
+    public long getStartTime(){
+        return startTime;
     }
     
     public long calcluateTimeDiff(long startTime, long endTime) {
@@ -45,11 +66,15 @@ public abstract class basicObject extends Thread {
     }
         
     public long updateTotalTime(long startTime, long endTime){
-        return this.timerTotal += endTime - startTime;
+        return timerTotal += endTime - startTime;
     }
     
     public long getCurrentTime() {
         return System.currentTimeMillis();
+    }
+    
+    public long getTotalTime(){
+        return timerTotal;
     }
     
     public long newMessage() {   
@@ -58,13 +83,39 @@ public abstract class basicObject extends Thread {
     }  
     
     public String readTxtFile(String someTxtFile){
-       String mystring ="";   
+       String mystring = null;   
        // some proceedure here
+       System.out.println("Reading File from Java code");
+       //Name of the file
+       try{
+          //Create object of FileReader
+          FileReader inputFile = new FileReader(someTxtFile);
+
+          //Instantiate the BufferedReader Class
+          BufferedReader bufferReader = new BufferedReader(inputFile);
+
+          //Variable to hold the one line data
+          String line;
+
+          // Read file line by line and print on the console
+          while ((line = bufferReader.readLine()) != null)   {
+              mystring += line;
+              // System.out.println(line);
+          }
+          //Close the buffer reader
+          bufferReader.close();
+       }catch(Exception e){
+          System.out.println("Error while reading file line by line:" + e.getMessage());                      
+       }
        return mystring; 
     }
     
-    public int writeTxtFile(String someTxt){
-        // some proceedure here
+    public int writeTxtFile(String someTxt, String someTxtFile){   
+         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(someTxtFile), "utf-8"))) {
+           writer.write(someTxt);
+        } catch (IOException ex) {
+            Logger.getLogger(basicObject.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return 0;
     }  
 }
