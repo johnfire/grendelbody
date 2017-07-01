@@ -28,6 +28,7 @@ public class message{
     private long idNumber ;
     private long myOrigin ;
     private long myDestination;
+    private int actionCode;
     private long myData;  
     
     public void setID(long id){
@@ -60,5 +61,13 @@ public class message{
     
     public long showDataID(){
         return myData;    
+    }
+    
+    public void setActionCode(int theActionCode){
+        actionCode = theActionCode;
+    }
+    
+    public int getActionCode(){
+        return actionCode;
     }
 }
