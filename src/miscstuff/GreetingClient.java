@@ -24,14 +24,14 @@ package miscstuff;
  */
 
 // File Name GreetingClient.java
+import basicstuff.message;
 import java.net.*;
 import java.io.*;
 
 public class GreetingClient {
 
-   public static void main(String [] args) {
-      String serverName = args[0];
-      int port = Integer.parseInt(args[1]);
+   public void run(String aServer, int port) {
+      String serverName = aServer;
       try {
          System.out.println("Connecting to " + serverName + " on port " + port);
          Socket client = new Socket(serverName, port);
@@ -45,9 +45,27 @@ public class GreetingClient {
          DataInputStream in = new DataInputStream(inFromServer);
          
          System.out.println("Server says " + in.readUTF());
-         client.close();
+         //client.close();
       }catch(IOException e) {
          e.printStackTrace();
       }
    }
+    public void sendMessage(message amessage){
+        try{
+            System.out.println("entered sendmessage method");
+            Socket client = new Socket("192.168.0.101", 5000);
+            System.out.println("111111entered sendmessage method");
+            // Create the input & output streams to the server
+            ObjectOutputStream outToServer = new ObjectOutputStream(client.getOutputStream());
+            //ObjectInputStream inFromServer = new ObjectInputStream(client.getInputStream());
+            System.out.println("22222entered sendmessage method");
+            outToServer.writeObject(amessage);
+            System.out.print("just sent a message");
+                
+        }catch(IOException e){
+            System.out.println("something failed in GreetingClient.sendMessage");
+        }
+        
+        
+    }
 }
