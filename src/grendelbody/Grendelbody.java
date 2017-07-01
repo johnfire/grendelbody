@@ -11,20 +11,19 @@ import grendelbody.internetinout.internetInterface;
 import grendelbody.output.output;
 import grendelbody.soundin.soundin;
 import grendelbody.visionin.visionin;
-import java.lang.management.ManagementFactory;
-import java.lang.management.ThreadMXBean;
-import static sun.misc.ThreadGroupUtils.getRootThreadGroup;
 
 /*
  *
  * @author christopherrehm
  */
 public class Grendelbody extends basicObject {
+    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         // TODO code application logic here
         //
         try {
@@ -38,8 +37,9 @@ public class Grendelbody extends basicObject {
             mySoundIn.start();
             myVisionIn.start();
             
-            Thread.getAllStackTraces().keySet().forEach((t) -> System.out.println(t.getName() + " Is Daemon " + t.isDaemon() + " Is Alive " + t.isAlive()));
             
+         
+//            /home/christopherrehm/NetBeansProjects/grendelbod/grendelbody/src/grendelbody/Grendelbody.java:41
 //            Thread[]threads = Thread.getAllThreads( ) {
 //                final ThreadGroup root = getRootThreadGroup( );
 //                final ThreadMXBean thbean = ManagementFactory.getThreadMXBean( );
@@ -49,7 +49,7 @@ public class Grendelbody extends basicObject {
 //                do {
 //                    nAlloc *= 2;
 //                    threads = new Thread[ nAlloc ];
-//                    n = root.enumerate( threads, true );
+//                    n/home/christopherrehm/NetBeansProjects/grendelbod/grendelbody/src/grendelbody/Grendelbody.java:41 = root.enumerate( threads, true );
 //                } while ( n == nAllThread[]threads = Thread.getAllThreads( ) {
 //                final ThreadGroup root = getRootThreadGroup( );
 //                final ThreadMXBean thbean = ManagementFactory.getThreadMXBean( );
@@ -83,5 +83,16 @@ public class Grendelbody extends basicObject {
         catch (Exception e){
             System.out.println("something isnt working in grendelbody");    
         }   
-    }   
+    }  
+    
+//    public void printThreads(){
+//        //int runVar = 1;
+//        try {
+//            while (true) {
+//                Thread.getAllStackTraces().keySet().forEach((t) -> System.out.println(t.getName() + " Is Daemon " + t.isDaemon() + " Is Alive " + t.isAlive()));
+//                Thread.sleep(5000);
+//            }
+//        } catch (InterruptedException interruptedException) {
+//        }
+//    }
 }

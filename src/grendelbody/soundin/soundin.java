@@ -31,7 +31,7 @@ public class soundin extends basicstuff.basicObject implements Runnable{
         while (runVar== 1){
             try {
                 Thread.sleep(5000);
-                System.out.println("we are in the soundin routine,process number "+pid);  
+                System.out.println("we are in the soundin routine, process number "+pid);  
             } catch (InterruptedException ex) {
                 Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }

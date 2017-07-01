@@ -31,7 +31,9 @@ public class internetInterface extends basicObject implements Runnable {
         while (runVar== 1){
             try {
                 Thread.sleep(5000);
-                System.out.println("we are in the internet interface routine,process number "+pid);  
+                System.out.println("we are in the internet interface routine, process number "+pid);
+                Thread.getAllStackTraces().keySet().forEach((t) -> System.out.println(t.getName() + " Is Daemon " + t.isDaemon() + " Is Alive " + t.isAlive()));
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
