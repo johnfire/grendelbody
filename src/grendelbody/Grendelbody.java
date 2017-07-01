@@ -7,8 +7,7 @@ package grendelbody;
 
      //test again   
 ///test for git
-import basicstuff.basicObject;
-import basicstuff.message;
+import basicstuff.*;
 import grendelbody.internetinout.internetInterface;
 import grendelbody.output.output;
 import grendelbody.soundin.soundin;
@@ -19,7 +18,6 @@ import grendelbody.visionin.visionin;
  * @author christopherrehm
  */
 public class Grendelbody extends basicObject {
-    
 
     /**
      * @param args the command line arguments
@@ -38,63 +36,9 @@ public class Grendelbody extends basicObject {
             myOutput.start();
             mySoundIn.start();
             myVisionIn.start();
-            
-            
-         
-//            /home/christopherrehm/NetBeansProjects/grendelbod/grendelbody/src/grendelbody/Grendelbody.java:41
-//            Thread[]threads = Thread.getAllThreads( ) {
-//                final ThreadGroup root = getRootThreadGroup( );
-//                final ThreadMXBean thbean = ManagementFactory.getThreadMXBean( );
-//                int nAlloc = thbean.getThreadCount( );
-//                int n = 0;
-//                Thread[] threads;
-//                do {
-//                    nAlloc *= 2;
-//                    threads = new Thread[ nAlloc ];
-//                    n/home/christopherrehm/NetBeansProjects/grendelbod/grendelbody/src/grendelbody/Grendelbody.java:41 = root.enumerate( threads, true );
-//                } while ( n == nAllThread[]threads = Thread.getAllThreads( ) {
-//                final ThreadGroup root = getRootThreadGroup( );
-//                final ThreadMXBean thbean = ManagementFactory.getThreadMXBean( );
-//                int nAlloc = thbean.getThreadCount( );
-//                int n = 0;
-//                Thread[] threads;
-//                do {
-//                    nAlloc *= 2;
-//                    threads = new Thread[ nAlloc ];
-//                    n = root.enumerate( threads, true );
-//                } while ( n == nAlloc );
-//                return java.util.Arrays.copyOf( threads, n );
-//            }oc );
-//                return java.util.Arrays.copyOf( threads, n );
-//            }
-//            Thread T1 = new Thread ((Runnable) myInternetInterface);
-//            Thread T2 = new Thread ((Runnable) myOutput);
-//            Thread T3 = new Thread ((Runnable) mySoundIn);
-//            Thread T4 = new Thread ((Runnable) myVisionIn);
-//            
-////            try (AffinityLock newthread = AffinityLock.acquireLock()) {
-////    // do some work while locked to a CPU.
-////            }
-//
-//            System.out.println("--> THREAD 0 starting threads 1 to 4 ");
-//            T1.start();
-//            T2.start();
-//            T3.start();
-//            T4.start();
         }
         catch (Exception e){
             System.out.println("something isnt working in grendelbody");    
         }   
     }  
-    
-//    public void printThreads(){
-//        //int runVar = 1;
-//        try {
-//            while (true) {
-//                Thread.getAllStackTraces().keySet().forEach((t) -> System.out.println(t.getName() + " Is Daemon " + t.isDaemon() + " Is Alive " + t.isAlive()));
-//                Thread.sleep(5000);
-//            }
-//        } catch (InterruptedException interruptedException) {
-//        }
-//    }
 }
