@@ -18,12 +18,32 @@ import java.util.logging.Logger;
  * @author christopherrehm
  */
 public class internetInterface extends basicObject implements Runnable {
+    
     int runVar = 1;
     int pid;
-    @Override
+    
+    class internetObjStatus implements Runnable{
+        
+        public void run(){
+            while (true){
+                try {
+                    System.out.println("-----we are in the internet interface routine, process number "+pid);
+                    Thread.getAllStackTraces().keySet().forEach((t) -> System.out.println("----------"+ t.getName() + " Is Daemon " + t.isDaemon() + " Is Alive " + t.isAlive()));
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }     
+        }
+    }
+    
+    
+    //@Override
     public void run() {
         
         message TestMessage =new message();
+        Thread thread = new Thread(new internetObjStatus());
+        thread.start();
         
         // get process id number
         try {
@@ -45,15 +65,10 @@ public class internetInterface extends basicObject implements Runnable {
         }
         
         System.out.println("-----just past send message statement");
-               
-//        while (runVar== 1){
-//            try {
-//                System.out.println("we are in the internet interface routine, process number "+pid);
-//                Thread.getAllStackTraces().keySet().forEach((t) -> System.out.println(t.getName() + " Is Daemon " + t.isDaemon() + " Is Alive " + t.isAlive()));
-//                Thread.sleep(5000);
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-    }   
-}
+        
+        
+    }             
+//        
+} 
+    
+
