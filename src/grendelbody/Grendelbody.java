@@ -8,6 +8,7 @@ package grendelbody;
      //test again   
 ///test for git
 import basicstuff.*;
+import basicstuff.ThreadTracker;
 import grendelbody.internetinout.internetInterface;
 import grendelbody.output.output;
 import grendelbody.soundin.soundin;
@@ -28,14 +29,22 @@ public class Grendelbody extends basicObject {
         //
         try {
             internetInterface myInternetInterface = new internetInterface();
+            Thread theInternetInterface = new Thread(myInternetInterface);
             output myOutput = new output();
+            Thread theOutputer = new Thread(myOutput);
             soundin mySoundIn = new soundin();
+            Thread theListener = new Thread(mySoundIn);
             visionin myVisionIn= new visionin();
+            Thread theEyes = new Thread(myVisionIn);
+            ThreadTracker myThreadTracker = new ThreadTracker();
+            Thread theTracker = new Thread(myThreadTracker);
             
-            myInternetInterface.start();
-            myOutput.start();
-            mySoundIn.start();
-            myVisionIn.start();
+            theInternetInterface.start();
+            theOutputer.start();
+            theListener.start();
+            theEyes.start();
+            theTracker.start();
+            
         }
         catch (Exception e){
             System.out.println("something isnt working in grendelbody");    

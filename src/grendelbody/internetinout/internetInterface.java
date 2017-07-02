@@ -5,7 +5,7 @@
  */
 package grendelbody.internetinout;
 
-import basicstuff.basicObject;
+import basicstuff.*;
 import miscstuff.GreetingClient;
 import basicstuff.message;
 import java.io.File;
@@ -17,33 +17,19 @@ import java.util.logging.Logger;
  *
  * @author christopherrehm
  */
-public class internetInterface extends basicObject implements Runnable {
+public class internetInterface extends basicObject  {
     
     int runVar = 1;
-    int pid;
-    
-    class internetObjStatus implements Runnable{
-        
-        public void run(){
-            while (true){
-                try {
-                    System.out.println("-----we are in the internet interface routine, process number "+pid);
-                    Thread.getAllStackTraces().keySet().forEach((t) -> System.out.println("----------"+ t.getName() + " Is Daemon " + t.isDaemon() + " Is Alive " + t.isAlive()));
-                    Thread.sleep(5000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }     
-        }
-    }
-    
+    int pid; 
     
     //@Override
     public void run() {
         
         message TestMessage =new message();
-        Thread thread = new Thread(new internetObjStatus());
-        thread.start();
+        ObjectStatus mystats = new basicstuff.ObjectStatus();
+        mystats.setMyName("internet Interface");
+        Thread intInfThread = new Thread(mystats);
+        intInfThread.start();
         
         // get process id number
         try {
