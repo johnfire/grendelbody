@@ -22,7 +22,7 @@ public class internetInterface extends basicObject  {
     int runVar = 1;
     int pid; 
     
-    //@Override
+    @Override
     public void run() {
         
         message TestMessage =new message();
