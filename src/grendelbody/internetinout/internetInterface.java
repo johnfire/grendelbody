@@ -28,9 +28,14 @@ public class internetInterface extends basicObject implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-        GreetingClient myClient = new GreetingClient();
+        GreetingClient myClient = null;
+        try {
+            myClient = new GreetingClient("192.168.0.101",5000);
+        } catch (IOException ex) {
+            Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        myClient.run("192.168.0.101",5000);
+        //myClient.start("192.168.0.101",5000);
         System.out.println("made contact from internetinterface to router");
         myClient.sendMessage(TestMessage);
         System.out.println("just past send message statement");
