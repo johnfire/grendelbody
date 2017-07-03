@@ -26,7 +26,7 @@ public class internetInterface extends basicObject  {
     public void run() {
         
         
-        
+        System.out.println("im in the internet interface run function");
         message TestMessage =new message();
         TestMessage.setOrigin(00005);
         TestMessage.setDestination(101);
