@@ -74,8 +74,5 @@ public class internetInterface extends basicObject  {
         }
         //System.out.println("the message assembled is " + theMessage);
         return theMessage;
-    }
-//        
+    }        
 } 
-    
-
