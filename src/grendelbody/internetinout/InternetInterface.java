@@ -24,7 +24,7 @@ public class InternetInterface extends BasicObject  {
     @Override
     public void run() {
         
-        System.out.println("im in the internet interface run function");
+        //this.systemMessageStartUp("Internet Interface is starting now");
         Message testMessage =new Message();
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
@@ -50,7 +50,8 @@ public class InternetInterface extends BasicObject  {
         myClient = new GreetingClient("192.168.0.101",5000);
         myClient.startConnection("192.168.0.101",5000);
         
-        System.out.println("-----made contact from internet Interface to router");
+        
+        //this.systemMessage("-----made contact from internet Interface to router");
         
         try {
             myClient.sendMessageObject(testMessage);
@@ -58,7 +59,8 @@ public class InternetInterface extends BasicObject  {
             Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        System.out.println("-----just past send message statement");
+        
+        //this.systemMessage("-----just past send message statement");
         String[] str = {"mememe","you","no-data","the nsa is watchin ya"};
         String aMessage = this.buildMessage(str);
     } 
