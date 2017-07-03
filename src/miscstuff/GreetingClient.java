@@ -25,11 +25,9 @@ package miscstuff;
 
 // File Name GreetingClient.java
 import basicstuff.*;
-import java.awt.event.ActionListener;
 import java.net.*;
 import java.io.*;
-import java.awt.event.ActionEvent;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,9 +41,10 @@ public class GreetingClient extends basicstuff.basicObject{
    
     /**
      * Constructs the client by laying out the GUI and registering a
-     * listener with the textfield so that pressing Enter in the
-     * listener sends the textfield contents to the server.
-     * @throws java.io.IOException
+     * listener with the text field so that pressing Enter in the
+     * listener sends the text field contents to the server.
+     * @param ip
+     * @param port
      */
  
     public void startConnection(String ip, int port) {
