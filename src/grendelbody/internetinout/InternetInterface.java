@@ -29,7 +29,7 @@ public class InternetInterface extends BasicObject  {
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
         testMessage.setActionCode(0);
-        testMessage.setDataID(11111);
+        
         testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
         System.out.println(testMessage);
         
