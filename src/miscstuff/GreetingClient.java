@@ -34,9 +34,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GreetingClient extends basicstuff.basicObject{
-    private BufferedReader in;
-    private PrintWriter out;
-     private Socket clientSocket;
+    BufferedReader in;
+    PrintWriter out;
+    Socket clientSocket;
 
     public GreetingClient(String string, int i) { //To change body of generated methods, choose Tools | Templates.
     }
@@ -78,7 +78,8 @@ public class GreetingClient extends basicstuff.basicObject{
     
     public void sendMessageObject (message myMessage) throws IOException{
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
-        outToServer.writeObject(myMessage); 
+        System.out.println("-----System Message- entered send Message Object-----");
+        outToServer.writeObject((Object)myMessage); 
     }
     
     public message ReceiveMessageObject () throws IOException, ClassNotFoundException{
