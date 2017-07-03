@@ -6,11 +6,6 @@
 package grendelbody.visionin;
 
 import basicstuff.ObjectStatus;
-import grendelbody.internetinout.InternetInterface;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,21 +13,15 @@ import java.util.logging.Logger;
  */
 public class VisionIn extends basicstuff.BasicObject {
     
-    int pid;
     int MyId = 003;
    
     @Override
     public void run() {
-       
-        try {
-             pid = Integer.parseInt(new File("/proc/self").getCanonicalFile().getName());
-        } catch (IOException ex) {
-            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
        ObjectStatus myStats = new basicstuff.ObjectStatus();
         myStats.setMyName("visionin cell");
         Thread visionThread = new Thread(myStats);
         visionThread.start(); 
+        this.systemMessageStartUp("starting vision in cell");
     }
 }
