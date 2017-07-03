@@ -7,7 +7,7 @@ package grendelbody.internetinout;
 
 import basicstuff.*;
 import miscstuff.GreetingClient;
-import basicstuff.message;
+import basicstuff.Message;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author christopherrehm
  */
-public class InternetInterface extends basicObject  {
+public class InternetInterface extends BasicObject  {
     
     int pid; 
     
@@ -25,7 +25,7 @@ public class InternetInterface extends basicObject  {
     public void run() {
         
         System.out.println("im in the internet interface run function");
-        message testMessage =new message();
+        Message testMessage =new Message();
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
         testMessage.setActionCode(0);
@@ -69,7 +69,7 @@ public class InternetInterface extends basicObject  {
         for (loopCounter = 0; loopCounter < args.length; loopCounter++){
          theMessage += args[loopCounter];    
         }
-        //System.out.println("the message assembled is " + theMessage);
+        //System.out.println("the Message assembled is " + theMessage);
         return theMessage;
     }        
 } 

@@ -18,7 +18,7 @@ import grendelbody.visionin.VisionIn;
  *
  * @author christopherrehm
  */
-public class GrendelBody extends basicObject {
+public class GrendelBody extends BasicObject {
     public static final long  myId = 11; 
 
     /**

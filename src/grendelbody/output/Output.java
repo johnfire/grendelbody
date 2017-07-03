@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author christopherrehm
  */
-public class Output extends basicstuff.basicObject {
+public class Output extends basicstuff.BasicObject {
     
     int pid;
     

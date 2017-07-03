@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author christopherrehm
  */
-public class VisionIn extends basicstuff.basicObject {
+public class VisionIn extends basicstuff.BasicObject {
     
     int pid;
    

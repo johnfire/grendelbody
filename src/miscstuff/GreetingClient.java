@@ -31,7 +31,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GreetingClient extends basicstuff.basicObject{
+public class GreetingClient extends basicstuff.BasicObject{
     BufferedReader in;
     PrintWriter out;
     Socket clientSocket;
@@ -75,16 +75,16 @@ public class GreetingClient extends basicstuff.basicObject{
         return response;
     }
     
-    public void sendMessageObject (message myMessage) throws IOException{
+    public void sendMessageObject (Message myMessage) throws IOException{
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
         System.out.println("-----System Message- entered send Message Object-----");
-        outToServer.writeObject((message)myMessage); 
+        outToServer.writeObject((Message)myMessage); 
     }
     
-    public message ReceiveMessageObject () throws IOException, ClassNotFoundException{
-        message newMessage = new message();
+    public Message ReceiveMessageObject () throws IOException, ClassNotFoundException{
+        Message newMessage = new Message();
         ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
-        newMessage = (message) fromServer.readObject();
+        newMessage = (Message) fromServer.readObject();
         System.out.println(newMessage);
         return newMessage;
     }

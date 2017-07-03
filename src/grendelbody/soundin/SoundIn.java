@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author christopherrehm
  */
-public class SoundIn extends basicstuff.basicObject {
+public class SoundIn extends basicstuff.BasicObject {
     
     int pid;
     
