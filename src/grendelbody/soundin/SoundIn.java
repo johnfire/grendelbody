@@ -18,17 +18,12 @@ import java.util.logging.Logger;
  */
 public class SoundIn extends basicstuff.BasicObject {
     
-    int pid;
     int MyId = 4;
     
     @Override
     public void run() {
+        
         System.out.println("we are in the soundin routine");
-        try {
-             pid = Integer.parseInt(new File("/proc/self").getCanonicalFile().getName());
-        } catch (IOException ex) {
-            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         ObjectStatus myStats = new basicstuff.ObjectStatus();
         myStats.setMyName("soundin cell");
