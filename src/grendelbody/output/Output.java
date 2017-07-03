@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class Output extends basicstuff.BasicObject {
     
     int pid;
+    int MyId = 15;
     
     @Override
     public void run() {

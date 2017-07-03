@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class SoundIn extends basicstuff.BasicObject {
     
     int pid;
+    int MyId = 4;
     
     @Override
     public void run() {

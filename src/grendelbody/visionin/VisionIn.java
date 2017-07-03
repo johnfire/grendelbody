@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class VisionIn extends basicstuff.BasicObject {
     
     int pid;
+    int MyId = 003;
    
     @Override
     public void run() {

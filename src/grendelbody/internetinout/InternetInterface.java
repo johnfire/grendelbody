@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 public class InternetInterface extends BasicObject  {
     
     int pid; 
+    long myId = 8;
     
     @Override
     public void run() {
