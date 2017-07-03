@@ -29,5 +29,6 @@ public class SoundIn extends basicstuff.BasicObject {
         myStats.setMyName("soundin cell");
         Thread soundInThread = new Thread(myStats);
         soundInThread.start(); 
+        this.systemMessageStartUp("started sound in thread");
     }    
 }
