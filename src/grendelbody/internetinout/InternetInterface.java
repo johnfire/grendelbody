@@ -8,7 +8,6 @@ package grendelbody.internetinout;
 import basicstuff.*;
 import miscstuff.GreetingClient;
 import basicstuff.Message;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +18,8 @@ import java.util.logging.Logger;
  */
 public class InternetInterface extends BasicObject  {
     
-    long myId = 8;
-    
+    int myId = 8;
+    int[] intAry= {1,2,3,4};
     @Override
     public void run() {
         
@@ -32,6 +31,9 @@ public class InternetInterface extends BasicObject  {
         
         testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
         System.out.println(testMessage);
+        
+        Message anotherTestMsg;
+         anotherTestMsg = this.generateRndMessage(myId, 101 , 0,  intAry , "") ;  //(myId, 101 , 0, 0, "")
         
         //start status monitor
         ObjectStatus myStats = new basicstuff.ObjectStatus();
