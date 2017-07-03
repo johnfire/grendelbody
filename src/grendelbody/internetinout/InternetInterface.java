@@ -19,7 +19,6 @@ import java.util.logging.Logger;
  */
 public class InternetInterface extends BasicObject  {
     
-    int pid; 
     long myId = 8;
     
     @Override
@@ -40,12 +39,6 @@ public class InternetInterface extends BasicObject  {
         Thread intInfThread = new Thread(myStats);
         intInfThread.start();
         
-        // get process id number
-        try {
-             pid = Integer.parseInt(new File("/proc/self").getCanonicalFile().getName());
-        } catch (IOException ex) {
-            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
         // set up connection 
         GreetingClient myClient = null;
         myClient = new GreetingClient("192.168.0.101",5000);
