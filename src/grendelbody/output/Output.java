@@ -18,22 +18,15 @@ import java.util.logging.Logger;
  */
 public class Output extends basicstuff.BasicObject {
     
-    int pid;
     int MyId = 15;
     
     @Override
     public void run() {
         
-        try {
-             pid = Integer.parseInt(new File("/proc/self").getCanonicalFile().getName());
-        } catch (IOException ex) {
-            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         ObjectStatus myStats = new basicstuff.ObjectStatus();
         myStats.setMyName("Output cell");
         Thread outputThread = new Thread(myStats);
         outputThread.start();
-        System.out.println("We are in the internet output first time"+ "my process ID is "+ pid);
+        this.systemMessageStartUp("started output thread");
     }    
 }
