@@ -25,7 +25,15 @@ public class internetInterface extends basicObject  {
     @Override
     public void run() {
         
+        
+        
         message TestMessage =new message();
+        TestMessage.setOrigin(00005);
+        TestMessage.setDestination(101);
+        TestMessage.setActionCode(0);
+        TestMessage.setDataID(11111);
+        TestMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
+        System.out.println(TestMessage);
         
         //start status monitor
         ObjectStatus mystats = new basicstuff.ObjectStatus();
@@ -55,7 +63,7 @@ public class internetInterface extends basicObject  {
         
         System.out.println("-----just past send message statement");
         String[] str = {"mememe","you","nodata","the nsa is watchin ya"};
-        String aMessage = this.assembleMessage(str);
+        String aMessage = this.buildMessage(str);
     } 
     
     public String assembleMessage (String[] args){
@@ -64,7 +72,7 @@ public class internetInterface extends basicObject  {
         for ( x=0; x<args.length;x++){
          theMessage += args[x];    
         }
-        System.out.println("the message assembled is " + theMessage);
+        //System.out.println("the message assembled is " + theMessage);
         return theMessage;
     }
 //        
