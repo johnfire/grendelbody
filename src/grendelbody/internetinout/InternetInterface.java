@@ -60,14 +60,4 @@ public class InternetInterface extends BasicObject  {
         String[] str = {"mememe","you","no-data","the nsa is watchin ya"};
         String aMessage = this.buildMessage(str);
     } 
-    
-//    public String assembleMessage (String[] args){
-//        int loopCounter = 0;
-//        String theMessage = "";
-//        for (loopCounter = 0; loopCounter < args.length; loopCounter++){
-//         theMessage += args[loopCounter];    
-//        }
-//        //System.out.println("the Message assembled is " + theMessage);
-//        return theMessage;
-//    }        
 } 
