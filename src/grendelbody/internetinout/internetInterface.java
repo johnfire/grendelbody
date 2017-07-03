@@ -26,6 +26,8 @@ public class internetInterface extends basicObject  {
     public void run() {
         
         message TestMessage =new message();
+        
+        //start status monitor
         ObjectStatus mystats = new basicstuff.ObjectStatus();
         mystats.setMyName("internet Interface");
         Thread intInfThread = new Thread(mystats);
@@ -37,11 +39,12 @@ public class internetInterface extends basicObject  {
         } catch (IOException ex) {
             Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        // set up connection 
         GreetingClient myClient = null;
         myClient = new GreetingClient("192.168.0.101",5000);
         
         myClient.startConnection("192.168.0.101",5000);
+        
         System.out.println("-----made contact from internetinterface to router");
         
         try {
@@ -51,9 +54,19 @@ public class internetInterface extends basicObject  {
         }
         
         System.out.println("-----just past send message statement");
-        
-        
-    }             
+        String[] str = {"mememe","you","nodata","the nsa is watchin ya"};
+        String aMessage = this.assembleMessage(str);
+    } 
+    
+    public String assembleMessage (String[] args){
+        int x = 0;
+        String theMessage = "";
+        for ( x=0; x<args.length;x++){
+         theMessage += args[x];    
+        }
+        System.out.println("the message assembled is " + theMessage);
+        return theMessage;
+    }
 //        
 } 
     
