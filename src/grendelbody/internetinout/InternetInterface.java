@@ -17,60 +17,57 @@ import java.util.logging.Logger;
  *
  * @author christopherrehm
  */
-public class internetInterface extends basicObject  {
+public class InternetInterface extends basicObject  {
     
-    int runVar = 1;
     int pid; 
     
     @Override
     public void run() {
         
-        
         System.out.println("im in the internet interface run function");
-        message TestMessage =new message();
-        TestMessage.setOrigin(00005);
-        TestMessage.setDestination(101);
-        TestMessage.setActionCode(0);
-        TestMessage.setDataID(11111);
-        TestMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
-        System.out.println(TestMessage);
+        message testMessage =new message();
+        testMessage.setOrigin(00005);
+        testMessage.setDestination(101);
+        testMessage.setActionCode(0);
+        testMessage.setDataID(11111);
+        testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
+        System.out.println(testMessage);
         
         //start status monitor
-        ObjectStatus mystats = new basicstuff.ObjectStatus();
-        mystats.setMyName("internet Interface");
-        Thread intInfThread = new Thread(mystats);
+        ObjectStatus myStats = new basicstuff.ObjectStatus();
+        myStats.setMyName("internet Interface");
+        Thread intInfThread = new Thread(myStats);
         intInfThread.start();
         
         // get process id number
         try {
              pid = Integer.parseInt(new File("/proc/self").getCanonicalFile().getName());
         } catch (IOException ex) {
-            Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
         // set up connection 
         GreetingClient myClient = null;
         myClient = new GreetingClient("192.168.0.101",5000);
-        
         myClient.startConnection("192.168.0.101",5000);
         
-        System.out.println("-----made contact from internetinterface to router");
+        System.out.println("-----made contact from internet Interface to router");
         
         try {
-            myClient.sendMessageObject(TestMessage);
+            myClient.sendMessageObject(testMessage);
         } catch (IOException ex) {
-            Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         System.out.println("-----just past send message statement");
-        String[] str = {"mememe","you","nodata","the nsa is watchin ya"};
+        String[] str = {"mememe","you","no-data","the nsa is watchin ya"};
         String aMessage = this.buildMessage(str);
     } 
     
     public String assembleMessage (String[] args){
-        int x = 0;
+        int loopCounter = 0;
         String theMessage = "";
-        for ( x=0; x<args.length;x++){
-         theMessage += args[x];    
+        for (loopCounter = 0; loopCounter < args.length; loopCounter++){
+         theMessage += args[loopCounter];    
         }
         //System.out.println("the message assembled is " + theMessage);
         return theMessage;

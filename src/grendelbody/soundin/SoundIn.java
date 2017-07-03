@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grendelbody.output;
+package grendelbody.soundin;
 
 import basicstuff.ObjectStatus;
-import grendelbody.internetinout.internetInterface;
+import grendelbody.internetinout.InternetInterface;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -16,23 +16,22 @@ import java.util.logging.Logger;
  *
  * @author christopherrehm
  */
-public class output extends basicstuff.basicObject {
+public class SoundIn extends basicstuff.basicObject {
     
     int pid;
     
     @Override
     public void run() {
-        
+        System.out.println("we are in the soundin routine");
         try {
              pid = Integer.parseInt(new File("/proc/self").getCanonicalFile().getName());
         } catch (IOException ex) {
-            Logger.getLogger(internetInterface.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        ObjectStatus mystats = new basicstuff.ObjectStatus();
-        mystats.setMyName("output cell");
-        Thread outputThread = new Thread(mystats);
-        outputThread.start();
-        System.out.println("we are in the internet output first time"+ "my process ID is "+ pid);
+        ObjectStatus myStats = new basicstuff.ObjectStatus();
+        myStats.setMyName("soundin cell");
+        Thread soundInThread = new Thread(myStats);
+        soundInThread.start(); 
     }    
 }

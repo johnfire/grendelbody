@@ -65,14 +65,14 @@ public class GreetingClient extends basicstuff.basicObject{
     public String sendMessage(String msg) {
         out.println(msg);
         
-        String resp ="";
+        String response ="";
         try {
-            resp = in.readLine();
-            System.out.println(resp);
+            response = in.readLine();
+            System.out.println(response);
         } catch (IOException ex) {
             Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return resp;
+        return response;
     }
     
     public void sendMessageObject (message myMessage) throws IOException{
