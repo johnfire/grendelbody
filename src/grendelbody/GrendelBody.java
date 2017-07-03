@@ -48,7 +48,7 @@ public class GrendelBody extends BasicObject {
             
         }
         catch (Exception e){
-            System.out.println("Something isn't working in grendelbody");    
+            System.out.println("-----SYSTEM MESSAGE ERROR----Something failed in GrendelBody");
         }   
     }  
 }
