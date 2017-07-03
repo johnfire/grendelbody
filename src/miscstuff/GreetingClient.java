@@ -77,7 +77,8 @@ public class GreetingClient extends basicstuff.BasicObject{
     
     public void sendMessageObject (Message myMessage) throws IOException{
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
-        System.out.println("-----System Message- entered send Message Object-----");
+        //System.out.println("-----System Message- entered send Message Object-----");
+        this.systemMessageStartUp("-----System Message- entered send Message Object-----");
         outToServer.writeObject((Message)myMessage); 
     }
     

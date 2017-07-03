@@ -25,7 +25,7 @@ public class InternetInterface extends BasicObject  {
     @Override
     public void run() {
         
-        //this.systemMessageStartUp("Internet Interface is starting now");
+        this.systemMessageStartUp("Internet Interface is starting now");
         Message testMessage =new Message();
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
@@ -52,7 +52,7 @@ public class InternetInterface extends BasicObject  {
         myClient.startConnection("192.168.0.101",5000);
         
         
-        //this.systemMessage("-----made contact from internet Interface to router");
+        this.systemMessage("-----made contact from internet Interface to router");
         
         try {
             myClient.sendMessageObject(testMessage);
@@ -61,18 +61,18 @@ public class InternetInterface extends BasicObject  {
         }
         
         
-        //this.systemMessage("-----just past send message statement");
+        this.systemMessage("-----just past send message statement");
         String[] str = {"mememe","you","no-data","the nsa is watchin ya"};
         String aMessage = this.buildMessage(str);
     } 
     
-    public String assembleMessage (String[] args){
-        int loopCounter = 0;
-        String theMessage = "";
-        for (loopCounter = 0; loopCounter < args.length; loopCounter++){
-         theMessage += args[loopCounter];    
-        }
-        //System.out.println("the Message assembled is " + theMessage);
-        return theMessage;
-    }        
+//    public String assembleMessage (String[] args){
+//        int loopCounter = 0;
+//        String theMessage = "";
+//        for (loopCounter = 0; loopCounter < args.length; loopCounter++){
+//         theMessage += args[loopCounter];    
+//        }
+//        //System.out.println("the Message assembled is " + theMessage);
+//        return theMessage;
+//    }        
 } 
