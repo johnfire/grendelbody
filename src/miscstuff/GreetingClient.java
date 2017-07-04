@@ -80,11 +80,12 @@ public class GreetingClient extends basicstuff.BasicObject{
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
         //System.out.println("-----System Message- entered send Message Object-----");
         this.systemMessageStartUp("-----GreetingClient----- entered send Message Object-----");
-        outToServer.writeObject((Message)myMessage); 
+        outToServer.writeObject(myMessage); 
+        this.systemMessage("--greeting client----- sent this "+ myMessage);
         this.systemMessage("-----GreetingClient----- sent Message");
     }
     
-    public Message ReceiveMessageObject () throws IOException, ClassNotFoundException{
+    public Message receiveMessageObject () throws IOException, ClassNotFoundException{
         Message newMessage = new Message();
         ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
         newMessage = (Message) fromServer.readObject();

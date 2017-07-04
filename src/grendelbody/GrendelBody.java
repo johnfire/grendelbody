@@ -19,7 +19,7 @@ import grendelbody.visionin.VisionIn;
  * @author christopherrehm
  */
 public class GrendelBody extends BasicObject {
-    public static final long  myId = 11; 
+    public static final int  myId = 11; 
 
     /**
      * @param args the command line arguments

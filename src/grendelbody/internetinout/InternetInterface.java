@@ -9,6 +9,7 @@ import basicstuff.*;
 import miscstuff.GreetingClient;
 import basicstuff.Message;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +21,18 @@ public class InternetInterface extends BasicObject  {
     
     int myId = 8;
     int[] intAry= {1,2,3,4};
+
+    /**
+     *
+     */
+    public LinkedList<Message> myMessagesToSend;
+    public LinkedList<Message> myMessagesToRead;
+    
+    public InternetInterface() {
+        myMessagesToSend = new LinkedList(); 
+        myMessagesToRead = new LinkedList();
+    }      
+    
     @Override
     public void run() {
         
@@ -28,12 +41,13 @@ public class InternetInterface extends BasicObject  {
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
         testMessage.setActionCode(0);
-        
         testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
-        System.out.println(testMessage);
+        this.systemMessage("the test message is located at " + testMessage);
+        this.myMessagesToSend.addLast(testMessage);
         
         Message anotherTestMsg;
-         anotherTestMsg = this.generateRndMessage(myId, 101 , 0,  intAry , "") ;  //(myId, 101 , 0, 0, "")
+        anotherTestMsg = this.generateRndMessage(myId, 101 , 0,  intAry , "") ;  //(myId, 101 , 0, 0, "")
+        this.myMessagesToSend.addLast(anotherTestMsg);
         
         //start status monitor
         ObjectStatus myStats = new basicstuff.ObjectStatus();
@@ -46,18 +60,27 @@ public class InternetInterface extends BasicObject  {
         myClient = new GreetingClient("192.168.0.101",5000);
         myClient.startConnection("192.168.0.101",5000);
         
-        
         this.systemMessage("-----InternetInterface-----made contact from internet Interface to router");
-        
-        try {
-            myClient.sendMessageObject(testMessage);
-        } catch (IOException ex) {
-            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+        // enter work loop 
+        while(true){
+            try {
+                // send all mesasges in list
+            while(this.myMessagesToSend.isEmpty() != true){
+                myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
+                this.systemMessage("-----Internet Interface sent a message");
+            }
+            while(this.myMessagesToRead.isEmpty() != true){
+                try {
+                    this.myMessagesToRead.addLast(myClient.receiveMessageObject());
+                    this.systemMessage("-----Internet Interface----- just received a message");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            } catch (IOException ex) {
+                Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //this.systemMessage("-----InternetInterface-----leaving work loop statement");
         }
-        
-        
-        this.systemMessage("-----InternetInterface-----just past send message statement");
-        String[] str = {"mememe","you","no-data","the nsa is watchin ya"};
-        String aMessage = this.buildMessage(str);
     } 
 } 
