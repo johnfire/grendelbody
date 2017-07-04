@@ -80,7 +80,9 @@ public class GreetingClient extends basicstuff.BasicObject{
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
         //System.out.println("-----System Message- entered send Message Object-----");
         this.systemMessageStartUp("-----GreetingClient----- entered send Message Object-----");
-        outToServer.writeObject(myMessage); 
+        outToServer.reset();
+        outToServer.writeObject(myMessage);
+        outToServer.flush();
         this.systemMessage("--greeting client----- sent this "+ myMessage);
         this.systemMessage("-----GreetingClient----- sent Message");
     }
