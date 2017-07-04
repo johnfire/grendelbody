@@ -47,7 +47,7 @@ public class InternetInterface extends BasicObject  {
         myClient.startConnection("192.168.0.101",5000);
         
         
-        this.systemMessage("-----made contact from internet Interface to router");
+        this.systemMessage("-----InternetInterface-----made contact from internet Interface to router");
         
         try {
             myClient.sendMessageObject(testMessage);
@@ -56,7 +56,7 @@ public class InternetInterface extends BasicObject  {
         }
         
         
-        this.systemMessage("-----just past send message statement");
+        this.systemMessage("-----InternetInterface-----just past send message statement");
         String[] str = {"mememe","you","no-data","the nsa is watchin ya"};
         String aMessage = this.buildMessage(str);
     } 
