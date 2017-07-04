@@ -35,6 +35,7 @@ public class GreetingClient extends basicstuff.BasicObject{
     BufferedReader in;
     PrintWriter out;
     Socket clientSocket;
+    int myId = 20;
 
     public GreetingClient(String string, int i) { //To change body of generated methods, choose Tools | Templates.
     }
