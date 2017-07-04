@@ -79,8 +79,9 @@ public class GreetingClient extends basicstuff.BasicObject{
     public void sendMessageObject (Message myMessage) throws IOException{
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
         //System.out.println("-----System Message- entered send Message Object-----");
-        this.systemMessageStartUp("-----System Message- entered send Message Object-----");
+        this.systemMessageStartUp("-----GreetingClient----- entered send Message Object-----");
         outToServer.writeObject((Message)myMessage); 
+        this.systemMessage("-----GreetingClient----- sent Message");
     }
     
     public Message ReceiveMessageObject () throws IOException, ClassNotFoundException{
