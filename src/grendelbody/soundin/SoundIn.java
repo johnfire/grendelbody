@@ -20,7 +20,8 @@ import miscstuff.GreetingClient;
  */
 public class SoundIn extends basicstuff.BasicObject {
     
-    int MyId = 4;
+    int myId = 4;
+    int [] intAry = {0,0,0};
     public LinkedList<Message> myMessagesToSend;
     public LinkedList<Message> myMessagesToRead;
     
@@ -48,6 +49,9 @@ public class SoundIn extends basicstuff.BasicObject {
         myClient.startConnection("192.168.0.101",5000);
         
         this.systemMessage("-----Sound In Cell----- Made contact from Sound Cell to router");
+        
+        Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
+        this.myMessagesToSend.addLast(anotherMessage);
         
         // enter work loop 
         while(true){
