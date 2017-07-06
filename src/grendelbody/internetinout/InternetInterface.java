@@ -35,17 +35,18 @@ public class InternetInterface extends BasicObject  {
         
         this.systemMessageStartUp("Starting Internet Interface run routine");
         
-        Message testMessage =new Message();
+        Message testMessage;
+        testMessage = new Message(5,5,101,1,intAry,"blah");
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
-        testMessage.setActionCode(0);
+        testMessage.setMyActionCode(0);
         testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
-        this.systemMessage("The test message is located at " + testMessage +" in the Internet Interface");
+        this.systemMessage("The test message is located at " + testMessage +" in the Internet Interface" + testMessage.showMessageNr() + " = msg nr ::" + testMessage.showOrigin() + "= origin ::" + testMessage.showDestination(2) + "= dest ::" + testMessage.getMessageTxt());
         this.myMessagesToSend.addLast(testMessage);
         
-        Message anotherTestMsg;
-        anotherTestMsg = this.generateRndMessage(myId, 101 , 0,  intAry , "") ;  //(myId, 101 , 0, 0, "")
-        this.myMessagesToSend.addLast(anotherTestMsg);
+        Message anotherMessage = new Message();
+        
+        this.myMessagesToSend.addLast(anotherMessage);
         
         //start status monitor
         ObjectStatus myStats = new basicstuff.ObjectStatus();
