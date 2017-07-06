@@ -35,7 +35,7 @@ public class SoundIn extends basicstuff.BasicObject {
         this.systemMessageStartUp("Starting Sound In run routine");
           
         ObjectStatus myStats = new basicstuff.ObjectStatus();
-        myStats.setMyName("soundin cell");
+        myStats.setMyName("Sound In cell");
         Thread soundInThread = new Thread(myStats);
         soundInThread.start(); 
         this.systemMessageStartUp("Started Sound In self monitoring thread");
