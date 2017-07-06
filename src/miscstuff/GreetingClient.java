@@ -84,7 +84,7 @@ public class GreetingClient extends basicstuff.BasicObject{
         outToServer.writeObject(myMessage);
         outToServer.flush();
         this.systemMessage("-----Greeting Client----- Sent this "+ myMessage);
-        this.systemMessage("-----Greeting Client----- Sent Message");
+        this.systemMessage("-----Greeting Client----- Sent Message #" + myMessage.showMessageNr());
     }
     
     public Message receiveMessageObject () throws IOException, ClassNotFoundException{

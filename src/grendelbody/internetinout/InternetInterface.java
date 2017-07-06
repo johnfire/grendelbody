@@ -44,7 +44,7 @@ public class InternetInterface extends BasicObject  {
         this.systemMessage("The test message is located at " + testMessage +" in the Internet Interface" + testMessage.showMessageNr() + " = msg nr ::" + testMessage.showOrigin() + "= origin ::" + testMessage.showDestination(2) + "= dest ::" + testMessage.getMessageTxt());
         this.myMessagesToSend.addLast(testMessage);
         
-        Message anotherMessage = new Message();
+        Message anotherMessage = new Message(5,5,101,1,intAry, "blah blah");
         
         this.myMessagesToSend.addLast(anotherMessage);
         
