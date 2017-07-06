@@ -58,18 +58,8 @@ public class SoundIn extends basicstuff.BasicObject {
             
             // send all mesasges in list
             try {
-                while(this.myMessagesToSend.isEmpty() != true){
-                    myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
-                    this.systemMessage("-----Sound In Cell----- Sent a message");
-                }
-                while(this.myMessagesToRead.isEmpty() != true){
-                    try {
-                        this.myMessagesToRead.addLast(myClient.receiveMessageObject());
-                        this.systemMessage("-----Sound In Cell----- Received a message");
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-                    }   
-                }
+                myMessagesToRead= myClient.transferMessages(myMessagesToSend);
+                
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
