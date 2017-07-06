@@ -31,27 +31,31 @@ public class GrendelBody extends BasicObject {
         try {
             InternetInterface myInternetInterface = new InternetInterface();
             Thread theInternetInterface = new Thread(myInternetInterface);
+            
             Output myOutput = new Output();
-            Thread.sleep(delayTime);
             Thread theOutputer = new Thread(myOutput);
             SoundIn mySoundIn = new SoundIn();
-            Thread.sleep(delayTime);
             Thread theListener = new Thread(mySoundIn);
             VisionIn myVisionIn= new VisionIn();
-            Thread.sleep(delayTime);
             Thread theEyes = new Thread(myVisionIn);
-            Thread.sleep(delayTime);
+            
+            
+            
             ThreadTracker myThreadTracker = new ThreadTracker();
             Thread theTracker = new Thread(myThreadTracker);
             
             theInternetInterface.start();
+            Thread.sleep(delayTime);
             theOutputer.start();
+            Thread.sleep(delayTime);
             theListener.start();
+            Thread.sleep(delayTime);
             theEyes.start();
-            theTracker.start();
+            Thread.sleep(delayTime);
+            //theTracker.start();
             
         }
-        catch (Exception e){
+        catch (InterruptedException e){
             System.out.println("-----SYSTEM MESSAGE ERROR----Something failed in GrendelBody");
         }   
     }  
