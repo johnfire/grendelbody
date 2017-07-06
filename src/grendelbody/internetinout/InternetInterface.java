@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class InternetInterface extends BasicObject  {
     
     int myId = 8;
-    int[] intAry= {1,2,3,4};
+    int[] intAry= {0,0,0};
 
     public LinkedList<Message> myMessagesToSend;
     public LinkedList<Message> myMessagesToRead;
@@ -44,8 +44,13 @@ public class InternetInterface extends BasicObject  {
         this.systemMessage("The test message is located at " + testMessage +" in the Internet Interface " + testMessage.showMessageNr() + " = msg nr ::" + testMessage.showOrigin() + " = origin ::" + testMessage.showDestination() + " = dest ::"+ testMessage.getMyActionCode() + " = :: acton code " + testMessage.getMessageTxt());
         this.myMessagesToSend.addLast(testMessage);
         
-        Message anotherMessage = new Message(5,5,101,1,intAry, "blah blah",true);
+        Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
         this.myMessagesToSend.addLast(anotherMessage);
+        
+        //myId, myId, 4, intAry, "bsgfabgfabbaf", true
+        //this.myMessagesToSend.addLast(this.generateRndMessage(myId, myId, myId, intAry, "QWERQWERQERQWQR", true));
+        
+        
         
         //start status monitor
         ObjectStatus myStats = new basicstuff.ObjectStatus();
@@ -63,7 +68,8 @@ public class InternetInterface extends BasicObject  {
         
         // enter work loop 
         while(true){
-            
+            anotherMessage = new Message(myId,myId,8,1,intAry, "blah blah",true);
+            this.myMessagesToSend.addLast(anotherMessage);
             // send all mesasges in list
             try {
                 while(this.myMessagesToSend.isEmpty() != true){
