@@ -52,7 +52,7 @@ public class GreetingClient extends basicstuff.BasicObject{
         try {
             try {
                 clientSocket = new Socket(ip, port);
-                this.systemMessage("in GreetingClient, established socket");
+                this.systemMessage("In Greeting Client, established socket");
             } catch (IOException ex) {
                 Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -79,12 +79,12 @@ public class GreetingClient extends basicstuff.BasicObject{
     public void sendMessageObject (Message myMessage) throws IOException{
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
         //System.out.println("-----System Message- entered send Message Object-----");
-        this.systemMessageStartUp("-----GreetingClient----- entered send Message Object-----");
+        this.systemMessageStartUp("-----Greeting Client----- Entered send Message Object-----");
         outToServer.reset();
         outToServer.writeObject(myMessage);
         outToServer.flush();
-        this.systemMessage("--greeting client----- sent this "+ myMessage);
-        this.systemMessage("-----GreetingClient----- sent Message");
+        this.systemMessage("-----Greeting Client----- Sent this "+ myMessage);
+        this.systemMessage("-----Greeting Client----- Sent Message");
     }
     
     public Message receiveMessageObject () throws IOException, ClassNotFoundException{
