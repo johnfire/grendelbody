@@ -36,13 +36,14 @@ public class InternetInterface extends BasicObject  {
     @Override
     public void run() {
         
-        this.systemMessageStartUp("Internet Interface is starting now");
+        this.systemMessageStartUp("starting Internet Interface run routine");
+        
         Message testMessage =new Message();
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
         testMessage.setActionCode(0);
         testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
-        this.systemMessage("the test message is located at " + testMessage);
+        this.systemMessage("the test message is located at " + testMessage +"in the internet interface");
         this.myMessagesToSend.addLast(testMessage);
         
         Message anotherTestMsg;
@@ -54,6 +55,7 @@ public class InternetInterface extends BasicObject  {
         myStats.setMyName("internet Interface");
         Thread intInfThread = new Thread(myStats);
         intInfThread.start();
+        this.systemMessageStartUp("started Internet Interface self monitoring thread");
         
         // set up connection 
         GreetingClient myClient = null;
