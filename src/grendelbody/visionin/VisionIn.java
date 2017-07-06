@@ -20,7 +20,8 @@ import miscstuff.GreetingClient;
  */
 public class VisionIn extends basicstuff.BasicObject {
     
-    int MyId = 003;
+    int myId = 003;
+    int[] intAry ={0,0,0};
     public LinkedList<Message> myMessagesToSend;
     public LinkedList<Message> myMessagesToRead;
     
@@ -46,6 +47,10 @@ public class VisionIn extends basicstuff.BasicObject {
         myClient.startConnection("192.168.0.101",5000);
         
         this.systemMessage("-----Vision In Cell----- Made contact from Vision In cell to router");
+        
+        Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
+        this.myMessagesToSend.addLast(anotherMessage);
+        
         // enter work loop 
         while(true){
             //send and get all messages 
