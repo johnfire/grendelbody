@@ -9,6 +9,8 @@ import basicstuff.*;
 import miscstuff.GreetingClient;
 import basicstuff.Message;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,22 +70,15 @@ public class InternetInterface extends BasicObject  {
         
         // enter work loop 
         while(true){
+            
             anotherMessage = new Message(myId,myId,7,1,intAry, "blah blah",true);
             this.myMessagesToSend.addLast(anotherMessage);
+            
             // send all mesasges in list
             try {
-                while(this.myMessagesToSend.isEmpty() != true){
-                    myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
-                    this.systemMessage("-----Internet Interface cell----- Sent a message");
-                }
-                while(this.myMessagesToRead.isEmpty() != true){
-                    try {
-                        this.myMessagesToRead.addLast(myClient.receiveMessageObject());
-                        this.systemMessage("-----Internet Interface cell----- Received a message");
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+                
+                myMessagesToRead= myClient.transferMessages(myMessagesToSend);
+            
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
