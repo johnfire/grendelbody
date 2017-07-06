@@ -49,7 +49,7 @@ public class InternetInterface extends BasicObject  {
         
         //start status monitor
         ObjectStatus myStats = new basicstuff.ObjectStatus();
-        myStats.setMyName("Internet Interface");
+        myStats.setMyName("Internet Interface cell");
         Thread intInfThread = new Thread(myStats);
         intInfThread.start();
         this.systemMessageStartUp("Started Internet Interface self monitoring thread");
