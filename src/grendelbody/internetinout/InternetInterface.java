@@ -22,9 +22,6 @@ public class InternetInterface extends BasicObject  {
     int myId = 8;
     int[] intAry= {1,2,3,4};
 
-    /**
-     *
-     */
     public LinkedList<Message> myMessagesToSend;
     public LinkedList<Message> myMessagesToRead;
     
@@ -36,14 +33,14 @@ public class InternetInterface extends BasicObject  {
     @Override
     public void run() {
         
-        this.systemMessageStartUp("starting Internet Interface run routine");
+        this.systemMessageStartUp("Starting Internet Interface run routine");
         
         Message testMessage =new Message();
         testMessage.setOrigin(00005);
         testMessage.setDestination(101);
         testMessage.setActionCode(0);
         testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
-        this.systemMessage("the test message is located at " + testMessage +"in the internet interface");
+        this.systemMessage("The test message is located at " + testMessage +" in the Internet Interface");
         this.myMessagesToSend.addLast(testMessage);
         
         Message anotherTestMsg;
@@ -52,36 +49,43 @@ public class InternetInterface extends BasicObject  {
         
         //start status monitor
         ObjectStatus myStats = new basicstuff.ObjectStatus();
-        myStats.setMyName("internet Interface");
+        myStats.setMyName("Internet Interface");
         Thread intInfThread = new Thread(myStats);
         intInfThread.start();
-        this.systemMessageStartUp("started Internet Interface self monitoring thread");
+        this.systemMessageStartUp("Started Internet Interface self monitoring thread");
         
         // set up connection 
         GreetingClient myClient = null;
         myClient = new GreetingClient("192.168.0.101",5000);
         myClient.startConnection("192.168.0.101",5000);
         
-        this.systemMessage("-----InternetInterface-----made contact from internet Interface to router");
+        this.systemMessage("-----Internet Interface cell----- Made contact from Internet Interface to router");
+        
         // enter work loop 
         while(true){
+            
+            // send all mesasges in list
             try {
-                // send all mesasges in list
-            while(this.myMessagesToSend.isEmpty() != true){
-                myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
-                this.systemMessage("-----Internet Interface sent a message");
-            }
-            while(this.myMessagesToRead.isEmpty() != true){
-                try {
-                    this.myMessagesToRead.addLast(myClient.receiveMessageObject());
-                    this.systemMessage("-----Internet Interface----- just received a message");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                while(this.myMessagesToSend.isEmpty() != true){
+                    myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
+                    this.systemMessage("-----Internet Interface cell----- Sent a message");
                 }
-            }
+                while(this.myMessagesToRead.isEmpty() != true){
+                    try {
+                        this.myMessagesToRead.addLast(myClient.receiveMessageObject());
+                        this.systemMessage("-----Internet Interface cell----- Received a message");
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            // Send and recieve Internet data
+            
+            // do other work 
+            
             //this.systemMessage("-----InternetInterface-----leaving work loop statement");
         }
     } 
