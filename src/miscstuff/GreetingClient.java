@@ -37,7 +37,7 @@ public class GreetingClient extends basicstuff.BasicObject{
     Socket clientSocket;
     int myId = 20;
 
-    public GreetingClient(String string, int i) { //To change body of generated methods, choose Tools | Templates.
+    public GreetingClient(String ip, int port) { //To change body of generated methods, choose Tools | Templates.
     }
    
     /**
@@ -52,7 +52,7 @@ public class GreetingClient extends basicstuff.BasicObject{
         try {
             try {
                 clientSocket = new Socket(ip, port);
-                System.out.println("in GreetingClient, establised socket");
+                this.systemMessage("in GreetingClient, established socket");
             } catch (IOException ex) {
                 Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
             }
