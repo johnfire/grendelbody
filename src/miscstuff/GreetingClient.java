@@ -36,6 +36,7 @@ public class GreetingClient extends basicstuff.BasicObject{
     PrintWriter out;
     Socket clientSocket;
     int myId = 20;
+    int[] intAry ={1,2,3};
 
     public GreetingClient(String ip, int port) { //To change body of generated methods, choose Tools | Templates.
     }
@@ -88,7 +89,7 @@ public class GreetingClient extends basicstuff.BasicObject{
     }
     
     public Message receiveMessageObject () throws IOException, ClassNotFoundException{
-        Message newMessage = new Message();
+        Message newMessage = new Message(0,0,0,0,intAry,"", false);
         ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
         newMessage = (Message) fromServer.readObject();
         System.out.println(newMessage);
