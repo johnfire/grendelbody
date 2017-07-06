@@ -32,38 +32,38 @@ public class VisionIn extends basicstuff.BasicObject {
     @Override
     public void run() {
         
-        this.systemMessageStartUp("starting VisionIn run routine");
+        this.systemMessageStartUp("Starting Vision In run routine");
 
 
         ObjectStatus myStats = new basicstuff.ObjectStatus();
-        myStats.setMyName("visionin cell");
+        myStats.setMyName("Vision In cell");
         Thread visionThread = new Thread(myStats);
         visionThread.start(); 
-        this.systemMessageStartUp("started vision self monitoring thread");
+        this.systemMessageStartUp("Started vision self monitoring thread");
         
         // set up connection 
         GreetingClient myClient = null;
         myClient = new GreetingClient("192.168.0.101",5000);
         myClient.startConnection("192.168.0.101",5000);
         
-        this.systemMessage("-----VisionIn Cell-----made contact from internet Interface to router");
+        this.systemMessage("-----Vision In Cell----- Made contact from Vision In cell to router");
         // enter work loop 
         while(true){
             //send and get all messages 
             try {
                 // send all mesasges in list
-            while(this.myMessagesToSend.isEmpty() != true){
-                myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
-                this.systemMessage("-----VisionIn Cell----- sent a message");
-            }
-            while(this.myMessagesToRead.isEmpty() != true){
-                try {
-                    this.myMessagesToRead.addLast(myClient.receiveMessageObject());
-                    this.systemMessage("-----VisionIn Cell----- just received a message");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                while(this.myMessagesToSend.isEmpty() != true){
+                    myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
+                    this.systemMessage("-----Vision In Cell----- Sent a message");
                 }
-            }
+                while(this.myMessagesToRead.isEmpty() != true){
+                    try {
+                        this.myMessagesToRead.addLast(myClient.receiveMessageObject());
+                        this.systemMessage("-----Vision In Cell----- Received a message");
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
