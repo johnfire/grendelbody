@@ -20,7 +20,8 @@ import miscstuff.GreetingClient;
  */
 public class Output extends basicstuff.BasicObject {
     
-    int MyId = 15;
+    int myId = 15;
+    int [] intAry = {0,0,0};
     
     public LinkedList<Message> myMessagesToSend;
     public LinkedList<Message> myMessagesToRead;
@@ -40,15 +41,17 @@ public class Output extends basicstuff.BasicObject {
         Thread outputThread = new Thread(myStats);
         outputThread.start();
         this.systemMessageStartUp("Started Output self monitoring thread");
-        
-        //this.startObjStatus(" Output ");
-        
+       
         // set up connection 
         GreetingClient myClient = null;
         myClient = new GreetingClient("192.168.0.101",5000);
         myClient.startConnection("192.168.0.101",5000);
         
         this.systemMessage("-----Output Cell----- Made contact from Output cell to router");
+        
+        Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
+        this.myMessagesToSend.addLast(anotherMessage);
+        
         // enter work loop 
         while(true){
             try {
