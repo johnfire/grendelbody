@@ -68,7 +68,7 @@ public class InternetInterface extends BasicObject  {
         
         // enter work loop 
         while(true){
-            anotherMessage = new Message(myId,myId,8,1,intAry, "blah blah",true);
+            anotherMessage = new Message(myId,myId,7,1,intAry, "blah blah",true);
             this.myMessagesToSend.addLast(anotherMessage);
             // send all mesasges in list
             try {
