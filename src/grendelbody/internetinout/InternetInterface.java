@@ -45,7 +45,6 @@ public class InternetInterface extends BasicObject  {
         this.myMessagesToSend.addLast(testMessage);
         
         Message anotherMessage = new Message(5,5,101,1,intAry, "blah blah",true);
-        
         this.myMessagesToSend.addLast(anotherMessage);
         
         //start status monitor
