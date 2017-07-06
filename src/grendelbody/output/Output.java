@@ -21,10 +21,9 @@ import miscstuff.GreetingClient;
 public class Output extends basicstuff.BasicObject {
     
     int MyId = 15;
+    
     public LinkedList<Message> myMessagesToSend;
     public LinkedList<Message> myMessagesToRead;
-    int port = 5000;
-    String iPAddress ="192.198.0.101";
     
     public Output() {
         myMessagesToSend = new LinkedList(); 
@@ -34,13 +33,13 @@ public class Output extends basicstuff.BasicObject {
     @Override
     public void run() {
         
-        this.systemMessageStartUp("starting Output run routine");
+        this.systemMessageStartUp("Starting Output run routine");
         
         ObjectStatus myStats = new basicstuff.ObjectStatus();
         myStats.setMyName("Output cell");
         Thread outputThread = new Thread(myStats);
         outputThread.start();
-        this.systemMessageStartUp("started output self monitoring thread");
+        this.systemMessageStartUp("Started Output self monitoring thread");
         
         //this.startObjStatus(" Output ");
         
@@ -49,26 +48,33 @@ public class Output extends basicstuff.BasicObject {
         myClient = new GreetingClient("192.168.0.101",5000);
         myClient.startConnection("192.168.0.101",5000);
         
-        this.systemMessage("-----Output Cell----- made contact from Internet Interface cell to router");
+        this.systemMessage("-----Output Cell----- Made contact from Output cell to router");
         // enter work loop 
         while(true){
             try {
                 // send all mesasges in list
-            while(this.myMessagesToSend.isEmpty() != true){
-                myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
-                this.systemMessage("-----Output Cell sent a message");
-            }
-            while(this.myMessagesToRead.isEmpty() != true){
-                try {
-                    this.myMessagesToRead.addLast(myClient.receiveMessageObject());
-                    this.systemMessage("-----Output Cell----- just received a message");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                while(this.myMessagesToSend.isEmpty() != true){
+                    myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
+                    this.systemMessage("-----Output Cell----- Sent a message");
                 }
-            }
+                while(this.myMessagesToRead.isEmpty() != true){
+                    try {
+                        this.myMessagesToRead.addLast(myClient.receiveMessageObject());
+                        this.systemMessage("-----Output Cell----- Received a message");
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            // play sound
+            
+            // send movements
+            
+            // do other work
+            
             //this.systemMessage("-----InternetInterface-----leaving work loop statement");
         }
     }    
