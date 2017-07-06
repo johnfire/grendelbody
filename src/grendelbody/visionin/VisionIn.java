@@ -34,7 +34,6 @@ public class VisionIn extends basicstuff.BasicObject {
         
         this.systemMessageStartUp("Starting Vision In run routine");
 
-
         ObjectStatus myStats = new basicstuff.ObjectStatus();
         myStats.setMyName("Vision In cell");
         Thread visionThread = new Thread(myStats);
