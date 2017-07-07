@@ -38,28 +38,22 @@ public class InternetInterface extends BasicObject  {
         this.systemMessageStartUp("Starting Internet Interface run routine");
         
         Message testMessage;
-        testMessage = new Message(5,5,101,1,intAry,"blah",true);
-        testMessage.setOrigin(00005);
-        testMessage.setDestination(101);
-        testMessage.setMyActionCode(0);
-        testMessage.setMessageTxt("aha this works!!!!!!!!!!!!!!!!");
-        this.systemMessage("The test message is located at " + testMessage +" in the Internet Interface " + testMessage.showMessageNr() + " = msg nr ::" + testMessage.showOrigin() + " = origin ::" + testMessage.showDestination() + " = dest ::"+ testMessage.getMyActionCode() + " = :: acton code " + testMessage.getMessageTxt());
+        testMessage = new Message(8,8,101,1,intAry,"ok this works",true);
+        this.systemMessage(" In internet interface ::  The test message is located at " + testMessage +" in the Internet Interface " + testMessage.showMessageNr() + " = msg nr ::" + testMessage.showOrigin() + " = origin ::" + testMessage.showDestination() + " = dest ::"+ testMessage.getMyActionCode() + " = :: acton code " + testMessage.getMessageTxt());
         this.myMessagesToSend.addLast(testMessage);
         
         Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
         this.myMessagesToSend.addLast(anotherMessage);
         
         //myId, myId, 4, intAry, "bsgfabgfabbaf", true
-        //this.myMessagesToSend.addLast(this.generateRndMessage(myId, myId, myId, intAry, "QWERQWERQERQWQR", true));
-        
-        
+        //this.myMessagesToSend.addLast(this.generateRndMessage(myId, myId, myId, intAry, "QWERQWERQERQWQR", true))
         
         //start status monitor
         ObjectStatus myStats = new basicstuff.ObjectStatus();
         myStats.setMyName("Internet Interface cell");
         Thread intInfThread = new Thread(myStats);
         intInfThread.start();
-        this.systemMessageStartUp("Started Internet Interface self monitoring thread");
+        this.systemMessageStartUp("in internet interface ::   Started Internet Interface self monitoring thread");
         
         // set up connection 
         GreetingClient myClient = null;
