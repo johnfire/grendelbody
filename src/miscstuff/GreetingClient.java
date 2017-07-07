@@ -64,20 +64,6 @@ public class GreetingClient extends basicstuff.BasicObject{
             Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
-   
-//    public String sendMessage(String msg) {
-//        out.println(msg);
-//        
-//        String response ="";
-//        try {
-//            response = in.readLine();
-//            System.out.println(response);
-//        } catch (IOException ex) {
-//            Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return response;
-//    }
-    
     
     public LinkedList<Message> transferMessages(LinkedList<Message> listToSend) throws IOException {
        Message myMessageHolder;
@@ -102,29 +88,4 @@ public class GreetingClient extends basicstuff.BasicObject{
        }
        return incomingMessages;  
     }
-    
-    
-//    public void sendMessageObject (Message myMessage) throws IOException{
-//        ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
-//        //System.out.println("-----System Message- entered send Message Object-----");
-//        this.systemMessageStartUp("-----Greeting Client----- Entered send Message Object-----");
-//        outToServer.reset();
-//        outToServer.writeObject(myMessage);
-//        outToServer.flush();
-//        this.systemMessage("-----Greeting Client----- Sent this "+ myMessage);
-//        this.systemMessage("-----Greeting Client----- Sent Message #" + myMessage.showMessageNr());
-//    }
-//    
-//    public LinkedList<Message> receiveMessageObject () throws IOException, ClassNotFoundException{
-//        LinkedList<Message> mylistOfMessages = new LinkedList();
-//        Message newMessage = new Message(0,0,0,0,intAry,"", false);
-//        ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
-//        
-//        if(1 == fromServer.available()){
-//            newMessage = (Message) fromServer.readObject();
-//            mylistOfMessages.addLast(newMessage);
-//            System.out.println(newMessage);
-//        }
-//        return mylistOfMessages;
-//    }
 }
