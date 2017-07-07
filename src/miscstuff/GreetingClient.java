@@ -57,7 +57,6 @@ public class GreetingClient extends basicstuff.BasicObject{
         } catch (IOException ex) {
             Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
     public LinkedList<Message> transferMessages(LinkedList<Message> listToSend) throws IOException {
