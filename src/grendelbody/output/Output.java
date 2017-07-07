@@ -56,18 +56,7 @@ public class Output extends basicstuff.BasicObject {
         while(true){
             try {
                 // send all mesasges in list
-                while(this.myMessagesToSend.isEmpty() != true){
-                    myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
-                    this.systemMessage("-----Output Cell----- Sent a message");
-                }
-                while(this.myMessagesToRead.isEmpty() != true){
-                    try {
-                        this.myMessagesToRead.addLast(myClient.receiveMessageObject());
-                        this.systemMessage("-----Output Cell----- Received a message");
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+                myMessagesToRead = myClient.transferMessages(myMessagesToSend);
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
