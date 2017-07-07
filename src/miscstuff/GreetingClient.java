@@ -28,18 +28,17 @@ import basicstuff.*;
 import java.net.*;
 import java.io.*;
 import java.util.LinkedList;
-//import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GreetingClient extends basicstuff.BasicObject{
-    BufferedReader in;
-    PrintWriter out;
+
     Socket clientSocket;
     int myId = 20;
     int[] intAry ={1,2,3};
 
-    public GreetingClient(String ip, int port) { //To change body of generated methods, choose Tools | Templates.
+    public GreetingClient(String ip, int port) {
+        // constructor.
     }
    
     /**
@@ -51,18 +50,14 @@ public class GreetingClient extends basicstuff.BasicObject{
      */
  
     public void startConnection(String ip, int port) {
+
         try {
-            try {
-                clientSocket = new Socket(ip, port);
-                this.systemMessage("In Greeting Client, established socket");
-            } catch (IOException ex) {
-                Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            clientSocket = new Socket(ip, port);
+            this.systemMessage("In Greeting Client, established socket");
         } catch (IOException ex) {
             Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        }
+
     }
     
     public LinkedList<Message> transferMessages(LinkedList<Message> listToSend) throws IOException {
