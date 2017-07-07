@@ -23,18 +23,19 @@ public class InternetInterface extends BasicObject  {
     
     int myId = 8;
     int[] intAry= {0,0,0};
+    LinkedList<Message> tempList;
 
     public LinkedList<Message> myMessagesToSend;
     public LinkedList<Message> myMessagesToRead;
     
     public InternetInterface() {
         myMessagesToSend = new LinkedList(); 
-        myMessagesToRead = new LinkedList();
+        //myMessagesToRead = new LinkedList();
     }      
     
     @Override
     public void run() {
-        
+        Message messageToTest ;
         this.systemMessageStartUp("Starting Internet Interface run routine");
         
         Message testMessage;
@@ -64,6 +65,7 @@ public class InternetInterface extends BasicObject  {
         
         // enter work loop 
         while(true){
+           
             
             anotherMessage = new Message(myId,myId,7,1,intAry, "blah blah",true);
             this.myMessagesToSend.addLast(anotherMessage);
@@ -71,7 +73,15 @@ public class InternetInterface extends BasicObject  {
             // send all mesasges in list
             try {
                 
-                myMessagesToRead= myClient.transferMessages(myMessagesToSend);
+                tempList = myClient.transferMessages(myMessagesToSend);
+                this.systemMessage("in int interface where it did fail. tempList is :" + tempList);
+                messageToTest = tempList.getFirst();
+                if("DUMMY".equals(messageToTest.getMessageTxt())){
+                   // do nothing 
+                }else {
+                    this.myMessagesToRead.addAll(tempList);   
+                }
+                
             
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
