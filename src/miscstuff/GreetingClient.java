@@ -66,20 +66,32 @@ public class GreetingClient extends basicstuff.BasicObject{
        ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
        ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
        
-       while(listToSend.isEmpty() != true){
+       while(listToSend.size() > 0){
           myMessageHolder = listToSend.removeFirst();
           //outToServer.reset();
           outToServer.writeObject(myMessageHolder);
           //outToServer.flush();
+          this.systemMessage("-----transferMessages function just SENT a message to socket it is msg nr :" + myMessageHolder.showMessageNr());
        }
-       while(fromServer.available() > 1){
-           try {
-               myMessageHolder = (Message)fromServer.readObject();
-               incomingMessages.addLast(myMessageHolder);
-           } catch (ClassNotFoundException ex) {
-               Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       }
+        this.systemMessage("ok checkin value of fromServer.available   is    ::" + fromServer.available());
+        if (fromServer.available() > 10) {
+            while (fromServer.available() > 10) {
+                this.systemMessage("-----in transfer message function " + fromServer.available());
+                try {
+                    myMessageHolder = (Message) fromServer.readObject();
+                    this.systemMessage("-----transferMessages function just got a message from socket it is msg nr :" + myMessageHolder.showMessageNr());
+                    incomingMessages.add(myMessageHolder);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            this.systemMessage("ok checkin that we made it this far");
+            Message dummyMessage  = new Message(0,0,0,0,intAry,"DUMMY",false);
+            this.systemMessage("ok addr of dummyMEssage is " + dummyMessage + " text " + dummyMessage.getMessageTxt());
+            boolean successful = incomingMessages.add(dummyMessage);
+            this.systemMessage("--return boolean is " + successful +" ok checkin for message in list "+ incomingMessages.getFirst().getMessageTxt());
+        }
        return incomingMessages;  
     }
 }
