@@ -56,18 +56,7 @@ public class VisionIn extends basicstuff.BasicObject {
             //send and get all messages 
             try {
                 // send all mesasges in list
-                while(this.myMessagesToSend.isEmpty() != true){
-                    myClient.sendMessageObject(this.myMessagesToSend.removeFirst());
-                    this.systemMessage("-----Vision In Cell----- Sent a message");
-                }
-                while(this.myMessagesToRead.isEmpty() != true){
-                    try {
-                        this.myMessagesToRead.addLast(myClient.receiveMessageObject());
-                        this.systemMessage("-----Vision In Cell----- Received a message");
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+                myMessagesToSend = myClient.transferMessages(myMessagesToSend);
             } catch (IOException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
