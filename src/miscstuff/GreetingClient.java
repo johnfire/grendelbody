@@ -93,6 +93,11 @@ public class GreetingClient extends basicstuff.BasicObject{
             boolean successful = incomingMessages.add(dummyMessage);
             this.systemMessage("--return boolean is " + successful +" ok checkin for message in list "+ incomingMessages.getFirst().getMessageTxt());
         }
-       return incomingMessages;  
+        outToServer.reset();
+        outToServer.flush();
+        //fromServer.reset();
+        //outToServer.close();
+        //fromServer.close();
+        return incomingMessages;  
     }
 }
