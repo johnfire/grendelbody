@@ -69,9 +69,9 @@ public class GreetingClient extends basicstuff.BasicObject{
        
        while(listToSend.isEmpty() != true){
           myMessageHolder = listToSend.removeFirst();
-          outToServer.reset();
+          //outToServer.reset();
           outToServer.writeObject(myMessageHolder);
-          outToServer.flush();
+          //outToServer.flush();
        }
        while(fromServer.available() > 1){
            try {
