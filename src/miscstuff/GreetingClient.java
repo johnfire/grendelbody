@@ -36,6 +36,8 @@ public class GreetingClient extends basicstuff.BasicObject{
     Socket clientSocket;
     int myId = 20;
     int[] intAry ={1,2,3};
+    Message myMessageHolder;
+    LinkedList<Message> incomingMessages = new LinkedList();
 
     public GreetingClient(String ip, int port) {
         // constructor.
@@ -60,8 +62,7 @@ public class GreetingClient extends basicstuff.BasicObject{
     }
     
     public LinkedList<Message> transferMessages(LinkedList<Message> listToSend) throws IOException {
-       Message myMessageHolder;
-       LinkedList<Message> incomingMessages = null;
+       
        
        ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
        ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
