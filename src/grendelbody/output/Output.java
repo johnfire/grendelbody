@@ -34,40 +34,46 @@ public class Output extends basicstuff.BasicObject {
     @Override
     public void run() {
         
-        this.systemMessageStartUp("Starting Output run routine");
-        
-        ObjectStatus myStats = new basicstuff.ObjectStatus();
-        myStats.setMyName("Output cell");
-        Thread outputThread = new Thread(myStats);
-        outputThread.start();
-        this.systemMessageStartUp("Started Output self monitoring thread");
-       
-        // set up connection 
-        GreetingClient myClient = null;
-        myClient = new GreetingClient("192.168.0.101",5000);
-        myClient.startConnection("192.168.0.101",5000);
-        
-        this.systemMessage("-----Output Cell----- Made contact from Output cell to router");
-        
-        Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
-        this.myMessagesToSend.addLast(anotherMessage);
-        
-        // enter work loop 
-        while(true){
-            try {
-                // send all mesasges in list
-                myMessagesToRead = myClient.transferMessages(myMessagesToSend);
-            } catch (IOException ex) {
-                Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            this.systemMessageStartUp("Starting Output run routine");
+            
+            ObjectStatus myStats = new basicstuff.ObjectStatus();
+            myStats.setMyName("Output cell");
+            Thread outputThread = new Thread(myStats);
+            outputThread.start();
+            this.systemMessageStartUp("Started Output self monitoring thread");
+            
+            // set up connection
+            GreetingClient myClient = null;
+            myClient = new GreetingClient("192.168.0.101",5000);
+            
+            
+            this.systemMessage("-----Output Cell----- Made contact from Output cell to router");
+            
+            Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
+            this.myMessagesToSend.addLast(anotherMessage);
+            
+            // enter work loop
+            while(true){
+                try {
+                    // send all mesasges in list
+                    myMessagesToRead = myClient.transferMessages(myMessagesToSend);
+                } catch (IOException ex) {
+                    Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Output.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                // play sound
+                
+                // send movements
+                
+                // do other work
+                
+                //this.systemMessage("-----InternetInterface-----leaving work loop statement");
             }
-            
-            // play sound
-            
-            // send movements
-            
-            // do other work
-            
-            //this.systemMessage("-----InternetInterface-----leaving work loop statement");
+        } catch (IOException ex) {
+            Logger.getLogger(Output.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 }
