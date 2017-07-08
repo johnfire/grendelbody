@@ -27,16 +27,20 @@ package miscstuff;
 import basicstuff.*;
 import java.net.*;
 import java.io.*;
-//import java.util.LinkedList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GreetingClient extends basicstuff.basicObject{
-    BufferedReader in;
-    PrintWriter out;
-    Socket clientSocket;
+public class GreetingClient extends basicstuff.BasicObject{
 
-    public GreetingClient(String string, int i) { //To change body of generated methods, choose Tools | Templates.
+    Socket clientSocket;
+    int myId = 20;
+    int[] intAry ={1,2,3};
+    Message myMessageHolder;
+    LinkedList<Message> incomingMessages = new LinkedList();
+
+    public GreetingClient(String ip, int port) {
+        // constructor.
     }
    
     /**
@@ -48,44 +52,52 @@ public class GreetingClient extends basicstuff.basicObject{
      */
  
     public void startConnection(String ip, int port) {
+
         try {
-            try {
-                clientSocket = new Socket(ip, port);
-                System.out.println("in GreetingClient, establised socket");
-            } catch (IOException ex) {
-                Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        } catch (IOException ex) {
-            Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
-        }   
-    }
-   
-    public String sendMessage(String msg) {
-        out.println(msg);
-        
-        String resp ="";
-        try {
-            resp = in.readLine();
-            System.out.println(resp);
+            clientSocket = new Socket(ip, port);
+            this.systemMessage("In Greeting Client, established socket");
         } catch (IOException ex) {
             Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return resp;
     }
     
-    public void sendMessageObject (message myMessage) throws IOException{
-        ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
-        System.out.println("-----System Message- entered send Message Object-----");
-        outToServer.writeObject((Object)myMessage); 
-    }
-    
-    public message ReceiveMessageObject () throws IOException, ClassNotFoundException{
-        message newMessage = new message();
-        ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
-        newMessage = (message) fromServer.readObject();
-        System.out.println(newMessage);
-        return newMessage;
+    public LinkedList<Message> transferMessages(LinkedList<Message> listToSend) throws IOException {
+       
+       
+       ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+       ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
+       
+       while(listToSend.size() > 0){
+          myMessageHolder = listToSend.removeFirst();
+          //outToServer.reset();
+          outToServer.writeObject(myMessageHolder);
+          //outToServer.flush();
+          this.systemMessage("-----transferMessages function just SENT a message to socket it is msg nr :" + myMessageHolder.showMessageNr());
+       }
+        this.systemMessage("ok checkin value of fromServer.available   is    ::" + fromServer.available());
+        if (fromServer.available() > 10) {
+            while (fromServer.available() > 10) {
+                this.systemMessage("-----in transfer message function " + fromServer.available());
+                try {
+                    myMessageHolder = (Message) fromServer.readObject();
+                    this.systemMessage("-----transferMessages function just got a message from socket it is msg nr :" + myMessageHolder.showMessageNr());
+                    incomingMessages.add(myMessageHolder);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(GreetingClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            this.systemMessage("ok checkin that we made it this far");
+            Message dummyMessage  = new Message(0,0,0,0,intAry,"DUMMY",false);
+            this.systemMessage("ok addr of dummyMEssage is " + dummyMessage + " text " + dummyMessage.getMessageTxt());
+            boolean successful = incomingMessages.add(dummyMessage);
+            this.systemMessage("--return boolean is " + successful +" ok checkin for message in list "+ incomingMessages.getFirst().getMessageTxt());
+        }
+        outToServer.reset();
+        outToServer.flush();
+        //fromServer.reset();
+        //outToServer.close();
+        //fromServer.close();
+        return incomingMessages;  
     }
 }
