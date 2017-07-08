@@ -33,36 +33,42 @@ public class VisionIn extends basicstuff.BasicObject {
     @Override
     public void run() {
         
-        this.systemMessageStartUp("Starting Vision In run routine");
-
-        ObjectStatus myStats = new basicstuff.ObjectStatus();
-        myStats.setMyName("Vision In cell");
-        Thread visionThread = new Thread(myStats);
-        visionThread.start(); 
-        this.systemMessageStartUp("Started vision self monitoring thread");
-        
-        // set up connection 
-        GreetingClient myClient = null;
-        myClient = new GreetingClient("192.168.0.101",5000);
-        myClient.startConnection("192.168.0.101",5000);
-        
-        this.systemMessage("-----Vision In Cell----- Made contact from Vision In cell to router");
-        
-        Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
-        this.myMessagesToSend.addLast(anotherMessage);
-        
-        // enter work loop 
-        while(true){
-            //send and get all messages 
-            try {
-                // send all mesasges in list
-                myMessagesToSend = myClient.transferMessages(myMessagesToSend);
-            } catch (IOException ex) {
-                Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            // do other work, collect data, or send data
+        try {
+            this.systemMessageStartUp("Starting Vision In run routine");
             
-            //this.systemMessage("-----InternetInterface-----leaving work loop statement");
+            ObjectStatus myStats = new basicstuff.ObjectStatus();
+            myStats.setMyName("Vision In cell");
+            Thread visionThread = new Thread(myStats);
+            visionThread.start();
+            this.systemMessageStartUp("Started vision self monitoring thread");
+            
+            // set up connection
+            GreetingClient myClient = null;
+            myClient = new GreetingClient("192.168.0.101",5000);
+            
+            
+            this.systemMessage("-----Vision In Cell----- Made contact from Vision In cell to router");
+            
+            Message anotherMessage = new Message(myId,myId,101,1,intAry, "blah blah",true);
+            this.myMessagesToSend.addLast(anotherMessage);
+            
+            // enter work loop
+            while(true){
+                //send and get all messages
+                try {
+                    // send all mesasges in list
+                    myMessagesToSend = myClient.transferMessages(myMessagesToSend);
+                } catch (IOException ex) {
+                    Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(VisionIn.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // do other work, collect data, or send data
+                
+                //this.systemMessage("-----InternetInterface-----leaving work loop statement");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(VisionIn.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
