@@ -44,16 +44,16 @@ public class GreetingClient extends basicstuff.BasicObject {
         
         mySC = SocketChannel.open();
         mySC.configureBlocking(false);
-        mySC.connect(new InetSocketAddress("192.168.0.101", port));
+        mySC.connect(new InetSocketAddress(ip, port));
         while (!mySC.finishConnect()) {
         }
     }
    
     /**
-     * Constructs the client by laying out the GUI and registering a
-     * listener with the text field so that pressing Enter in the
-     * listener sends the text field contents to the server.
+     * @param listToSend
+     * @return 
      * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      */
  
     public LinkedList<Message> transferMessages(LinkedList<Message> listToSend) throws IOException, ClassNotFoundException {
