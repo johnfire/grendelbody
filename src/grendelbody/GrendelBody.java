@@ -46,12 +46,14 @@ public class GrendelBody extends BasicObject {
             
             theInternetInterface.start();
             Thread.sleep(delayTime);
-            theOutputer.start();
-            Thread.sleep(delayTime);
-            theListener.start();
-            Thread.sleep(delayTime);
-            theEyes.start();
-            Thread.sleep(delayTime);
+            
+//            theOutputer.start();
+//            Thread.sleep(delayTime);
+//            theListener.start();
+//            Thread.sleep(delayTime);
+//            theEyes.start();
+//            Thread.sleep(delayTime);
+            
             //theTracker.start();
             
         }
