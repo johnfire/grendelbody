@@ -70,8 +70,9 @@ public class GreetingClient extends basicstuff.BasicObject{
        while(listToSend.size() > 0){
           myMessageHolder = listToSend.removeFirst();
           //outToServer.reset();
-          outToServer.writeObject(myMessageHolder);
-          //outToServer.flush();
+          
+          outToServer.writeObject((Object)myMessageHolder);
+          outToServer.flush();
           this.systemMessage("-----transferMessages function just SENT a message to socket it is msg nr :" + myMessageHolder.showMessageNr());
        }
         this.systemMessage("ok checkin value of fromServer.available   is    ::" + fromServer.available());
