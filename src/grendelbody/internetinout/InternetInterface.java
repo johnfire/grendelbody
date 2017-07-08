@@ -58,8 +58,12 @@ public class InternetInterface extends BasicObject  {
         
         // set up connection 
         GreetingClient myClient = null;
-        myClient = new GreetingClient("192.168.0.101",5000);
-        myClient.startConnection("192.168.0.101",5000);
+        try {
+            myClient = new GreetingClient("192.168.0.101",5000);
+        } catch (IOException ex) {
+            Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         
         this.systemMessage("-----Internet Interface cell----- Made contact from Internet Interface to router");
         
@@ -85,6 +89,8 @@ public class InternetInterface extends BasicObject  {
                 
             
             } catch (IOException ex) {
+                Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InternetInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
             
