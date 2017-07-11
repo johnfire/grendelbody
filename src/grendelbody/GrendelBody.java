@@ -13,6 +13,9 @@ import grendelbody.internetinout.InternetInterface;
 import grendelbody.output.Output;
 import grendelbody.soundin.SoundIn;
 import grendelbody.visionin.VisionIn;
+import com.pi4j.component.access.Keypad;
+import com.hopding.jrpicam.RPiCamera;
+import com.pi4j.wiringpi.Spi;
 
 /*
  *
